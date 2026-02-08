@@ -1,0 +1,2 @@
+# courses
+Squidemy Courses Documentation
