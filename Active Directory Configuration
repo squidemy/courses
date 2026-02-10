@@ -1,18 +1,18 @@
 
-# Active Directory Live Class — Part 2
+Active Directory Live Class — Part 2
 
-## Pre-Class Requirements & Setup Instructions
+Pre-Class Requirements & Setup Instructions
 
-To ensure the class runs smoothly and we maximize learning time, **all students must complete the required setup BEFORE the class begins.**  
-We will **NOT pause the class for system setup.**
+To ensure the class runs smoothly and we maximize learning time, **all students must complete the required setup BEFORE the class begins. 
+We will NOT pause the class for system setup.
 
-Please read carefully and complete **ALL prerequisites** prior to showtime.
+Please read carefully and complete ALL prerequisites prior to showtime.
 
 ---
 
 ## ⏰ Early Access (For Students Using Our Hosted Virtual Machines)
 
-If you purchased or plan to use **virtual machines provided by us**, the classroom will open **1 hour before the official class start time.**
+If you purchased or plan to use virtual machines provided by us, the classroom will open **1 hour before the official class start time.
 
 During this early-access window, we will:
 
@@ -22,7 +22,7 @@ During this early-access window, we will:
 - Ensure both systems are working properly  
 - Provide a quick Proxmox walkthrough (if needed)  
 
-⚠️ **Important**
+⚠️ Important
 
 - VM setup assistance is ONLY available during the early access hour.  
 - Once the class officially starts, we will begin immediately.  
@@ -30,9 +30,9 @@ During this early-access window, we will:
 
 ---
 
-## 🖥️ Students Using Their Own Systems (Local Lab Setup)
+🖥️ Students Using Their Own Systems (Local Lab Setup)
 
-If you are running your lab locally, your environment **MUST be fully prepared before class begins.**
+If you are running your lab locally, your environment **MUST be fully prepared before class begins.
 
 You may use any virtualization platform:
 
@@ -43,18 +43,18 @@ You may use any virtualization platform:
 
 ---
 
-## Required Lab Environment
+Required Lab Environment
 
-You MUST have **TWO working virtual machines ready before class:**
+You MUST have TWO working virtual machines ready before class:
 
-### 1. Windows Server 2025
+1. Windows Server 2025
 This will be used for:
 - Active Directory Domain Services
 - DNS
 - Group Policy
 - AD administration tasks
 
-### 2. Windows 11 Pro
+2. Windows 11 Pro
 This will be used for:
 - Domain joining
 - Client management
@@ -63,18 +63,18 @@ This will be used for:
 
 ---
 
-## Recommended System Requirements
+Recommended System Requirements
 
 To run both VMs smoothly:
 
-- Minimum **16 GB RAM** (32 GB recommended)
+- Minimum 16 GB RAM (32 GB recommended)
 - 4+ CPU cores
 - 100+ GB free disk space
 - Hardware virtualization enabled (VT-x / AMD-V)
 
 ---
 
-## VM Preparation Checklist
+VM Preparation Checklist
 
 Before class, confirm the following:
 
@@ -90,7 +90,7 @@ Before class, confirm the following:
 
 ---
 
-## Using Proxmox (Optional)
+Using Proxmox (Optional)
 
 We will be using **Proxmox** for guided lab demonstrations.
 
@@ -102,7 +102,7 @@ If you are unfamiliar with Proxmox:
 
 ---
 
-## Assistance Before Class
+Assistance Before Class
 
 If you need help with:
 
@@ -112,16 +112,16 @@ If you need help with:
 - Connectivity issues  
 - Hardware limitations  
 
-Please reach out **BEFORE the class starts.**
+Please reach out **BEFORE the class starts.
 
 We are happy to assist — however, once the class begins, we will proceed directly into the lesson.
 
 ---
 
-## Why Preparation Matters
+Why Preparation Matters
 
 The previous class experienced delays due to infrastructure setup.  
-To ensure we stay focused on **Active Directory learning and hands-on lab work**, all students must arrive with their lab environment ready.
+To ensure we stay focused on Active Directory learning and hands-on lab work, all students must arrive with their lab environment ready.
 
 This allows us to:
 
@@ -132,12 +132,12 @@ This allows us to:
 
 ---
 
-## Summary
+Summary
 
-**If using our hosted VMs**  
+**If using our hosted VMs  
 ➡ Join **1 hour early** for setup and verification.  
 
-**If using your own system**  
+If using your own system 
 ➡ Fully prepare BOTH virtual machines before class.  
 
 We look forward to a smooth and productive session.
