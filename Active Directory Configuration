@@ -3,7 +3,7 @@ Active Directory Live Class — Part 2
 
 Pre-Class Requirements & Setup Instructions
 
-To ensure the class runs smoothly and we maximize learning time, **all students must complete the required setup BEFORE the class begins. 
+To ensure the class runs smoothly and we maximize learning time, all students must complete the required setup BEFORE the class begins. 
 We will NOT pause the class for system setup.
 
 Please read carefully and complete ALL prerequisites prior to showtime.
@@ -12,7 +12,7 @@ Please read carefully and complete ALL prerequisites prior to showtime.
 
 ## ⏰ Early Access (For Students Using Our Hosted Virtual Machines)
 
-If you purchased or plan to use virtual machines provided by us, the classroom will open **1 hour before the official class start time.
+If you purchased or plan to use virtual machines provided by us, the classroom will open 1 hour before the official class start time.
 
 During this early-access window, we will:
 
@@ -92,13 +92,13 @@ Before class, confirm the following:
 
 Using Proxmox (Optional)
 
-We will be using **Proxmox** for guided lab demonstrations.
+We will be using Proxmox for guided lab demonstrations.
 
 If you are unfamiliar with Proxmox:
 
 - Do not worry  
 - A basic walkthrough will be provided  
-- This walkthrough occurs **during the early access hour ONLY**  
+- This walkthrough occurs during the early access hour ONLY 
 
 ---
 
@@ -134,8 +134,8 @@ This allows us to:
 
 Summary
 
-**If using our hosted VMs  
-➡ Join **1 hour early** for setup and verification.  
+If using our hosted VMs  
+➡ Join 1 hour early for setup and verification.  
 
 If using your own system 
 ➡ Fully prepare BOTH virtual machines before class.  
