@@ -1,0 +1,447 @@
+# Basic Group Policy Labs for Students
+
+This guide walks students through 5 beginner-friendly Group Policy Objects (GPOs) in an Active Directory lab environment. Each lab includes the goal, setup, step-by-step instructions, and verification tasks.
+
+## Lab Requirements
+
+Before starting, make sure you have:
+
+* A **Domain Controller
+* At least **1 domain-joined Windows client**
+* A test Organizational Unit (OU), such as:
+
+  * `Students`
+  * `Workstations`
+* A test user account inside the Students OU
+* Group Policy Management installed on the Domain Controller
+
+---
+
+# Lab 1: Configure a Domain Password Policy
+
+## Objective
+
+Create a password policy that requires:
+
+* Minimum password length
+* Password complexity
+* Password history
+
+## Why This Matters
+
+Password policies help protect domain accounts from weak or reused passwords.
+
+## Important Note
+
+Domain password policies should usually be configured in the **Default Domain Policy** if you want them to apply to all domain users.
+
+## Steps
+
+### Step 1: Open Group Policy Management
+
+1. Log in to your Domain Controller.
+2. Open **Server Manager**.
+3. Click **Tools**.
+4. Select **Group Policy Management**.
+
+### Step 2: Edit the Default Domain Policy
+
+1. Expand your domain.
+2. Locate **Default Domain Policy**.
+3. Right-click it.
+4. Select **Edit**.
+
+### Step 3: Navigate to Password Policy Settings
+
+Go to:
+
+`Computer Configuration > Policies > Windows Settings > Security Settings > Account Policies > Password Policy`
+
+### Step 4: Configure the Following
+
+Set these values:
+
+* **Enforce password history**: `5 passwords remembered`
+* **Maximum password age**: `30 days`
+* **Minimum password age**: `1 day`
+* **Minimum password length**: `8 characters`
+* **Password must meet complexity requirements**: `Enabled`
+
+### Step 5: Close the Editor
+
+1. Close the Group Policy Management Editor.
+2. On the client machine, run:
+
+```powershell
+gpupdate /force
+```
+
+## Verification
+
+Try changing a user's password to:
+
+* A weak password like `password`
+* A short password like `1234`
+
+Observe that the password should be rejected if it does not meet the policy.
+
+## Student Questions
+
+* Why is password complexity important?
+* What happens if password history is not enabled?
+
+---
+
+# Lab 2: Configure Account Lockout Policy
+
+## Objective
+
+Set up an account lockout policy to lock users out after multiple failed login attempts.
+
+## Why This Matters
+
+This helps reduce brute-force login attempts.
+
+## Steps
+
+### Step 1: Open the Default Domain Policy
+
+1. Open **Group Policy Management**.
+2. Right-click **Default Domain Policy**.
+3. Click **Edit**.
+
+### Step 2: Navigate to Account Lockout Policy
+
+Go to:
+
+`Computer Configuration > Policies > Windows Settings > Security Settings > Account Policies > Account Lockout Policy`
+
+### Step 3: Configure the Following
+
+Set:
+
+* **Account lockout threshold**: `3 invalid logon attempts`
+* When prompted, allow Windows to suggest values
+* Confirm:
+
+  * **Account lockout duration**: `15 minutes`
+  * **Reset account lockout counter after**: `15 minutes`
+
+### Step 4: Apply the Policy
+
+On the client machine, run:
+
+```powershell
+gpupdate /force
+```
+
+## Verification
+
+1. Attempt to sign in with the wrong password 3 times.
+2. Observe that the account becomes locked.
+3. Check Active Directory Users and Computers to confirm the account status.
+
+## Student Questions
+
+* Why would companies use an account lockout policy?
+* What could happen if the threshold is too low?
+
+---
+
+# Lab 3: Set a Desktop Wallpaper with GPO
+
+## Objective
+
+Apply a standard desktop wallpaper to student computers.
+
+## Why This Matters
+
+Organizations use desktop wallpaper GPOs for branding and standardization.
+
+## Setup
+
+Before starting:
+
+1. Save a wallpaper image in a shared folder, for example:
+
+```text
+\\DC01\Wallpapers\schoolwallpaper.jpg
+```
+
+2. Ensure **Domain Users** have read access to the folder.
+
+## Steps
+
+### Step 1: Create a New GPO
+
+1. Open **Group Policy Management**.
+2. Right-click the **Students OU**.
+3. Select **Create a GPO in this domain, and Link it here**.
+4. Name it:
+
+```text
+Student Desktop Wallpaper Policy
+```
+
+### Step 2: Edit the GPO
+
+1. Right-click the new GPO.
+2. Click **Edit**.
+
+### Step 3: Navigate to Desktop Wallpaper Setting
+
+Go to:
+
+`User Configuration > Policies > Administrative Templates > Desktop > Desktop`
+
+### Step 4: Configure Desktop Wallpaper
+
+1. Double-click **Desktop Wallpaper**.
+2. Set it to **Enabled**.
+3. In the wallpaper name field, enter the UNC path:
+
+```text
+\\DC01\Wallpapers\schoolwallpaper.jpg
+```
+
+4. Choose a wallpaper style such as:
+
+* Fill
+* Stretch
+* Center
+
+5. Click **Apply** and **OK**.
+
+### Step 5: Update Group Policy
+
+Log in as a student user on the client and run:
+
+```powershell
+gpupdate /force
+```
+
+Then sign out and sign back in if needed.
+
+## Verification
+
+Confirm that the desktop wallpaper changes for the student account.
+
+## Student Questions
+
+* Why should the wallpaper be stored on a shared folder instead of a local PC?
+* What might happen if permissions are incorrect?
+
+---
+
+# Lab 4: Disable Control Panel and Settings
+
+## Objective
+
+Prevent users from accessing Control Panel and Settings.
+
+## Why This Matters
+
+This helps prevent unauthorized system changes.
+
+## Steps
+
+### Step 1: Create a New GPO
+
+1. In **Group Policy Management**, right-click the **Students OU**.
+2. Select **Create a GPO in this domain, and Link it here**.
+3. Name it:
+
+```text
+Disable Control Panel Policy
+```
+
+### Step 2: Edit the GPO
+
+1. Right-click the GPO.
+2. Click **Edit**.
+
+### Step 3: Navigate to the Setting
+
+Go to:
+
+`User Configuration > Policies > Administrative Templates > Control Panel`
+
+### Step 4: Enable the Restriction
+
+1. Double-click **Prohibit access to Control Panel and PC settings**.
+2. Select **Enabled**.
+3. Click **Apply** and **OK**.
+
+### Step 5: Update Policy on Client
+
+On the client machine, run:
+
+```powershell
+gpupdate /force
+```
+
+## Verification
+
+1. Log in as the student user.
+2. Try opening:
+
+* Control Panel
+* Settings
+
+They should be blocked.
+
+## Student Questions
+
+* Why would an administrator block access to Control Panel?
+* Should this apply to all users or only some users?
+
+---
+
+# Lab 5: Map a Network Drive with GPO
+
+## Objective
+
+Automatically map a shared folder as a drive letter for students.
+
+## Why This Matters
+
+Mapped drives give users easy access to shared resources.
+
+## Setup
+
+Create a shared folder first, such as:
+
+```text
+\\DC01\StudentShare
+```
+
+Make sure the correct users have access.
+
+## Steps
+
+### Step 1: Create a New GPO
+
+1. Open **Group Policy Management**.
+2. Right-click the **Students OU**.
+3. Select **Create a GPO in this domain, and Link it here**.
+4. Name it:
+
+```text
+Student Drive Mapping Policy
+```
+
+### Step 2: Edit the GPO
+
+1. Right-click the GPO.
+2. Click **Edit**.
+
+### Step 3: Navigate to Drive Maps
+
+Go to:
+
+`User Configuration > Preferences > Windows Settings > Drive Maps`
+
+### Step 4: Create a New Mapped Drive
+
+1. Right-click in the blank pane.
+2. Select:
+
+**New > Mapped Drive**
+
+### Step 5: Configure the Drive
+
+Set:
+
+* **Action**: `Create`
+* **Location**: `\\DC01\StudentShare`
+* **Drive Letter**: `S:`
+* **Label as**: `Student Share`
+
+Click **Apply** and **OK**.
+
+### Step 6: Update Group Policy
+
+On the client machine, run:
+
+```powershell
+gpupdate /force
+```
+
+## Verification
+
+1. Log in as the student user.
+2. Open **File Explorer**.
+3. Confirm that drive `S:` appears and opens the shared folder.
+
+## Student Questions
+
+* Why are mapped drives useful in business environments?
+* What is the difference between NTFS permissions and share permissions?
+
+---
+
+# Suggested OU Structure for Testing
+
+```text
+yourdomain.local
+│
+├── Students
+│   ├── Student Users
+│   └── Student Computers
+```
+
+This helps students understand where GPOs should be linked.
+
+---
+
+# Recommended Student Deliverables
+
+* Screenshot of each GPO created
+* Screenshot of the configured policy setting
+* Screenshot showing the result on the client machine
+* A short explanation of what the policy does
+* Any troubleshooting steps they had to perform
+
+---
+
+# Troubleshooting Tips
+
+## If the GPO does not apply:
+
+* Confirm the user or computer is in the correct OU
+* Run:
+
+```powershell
+gpupdate /force
+```
+
+* Check applied policies with:
+
+```powershell
+gpresult /r
+```
+
+* Verify security filtering
+* Verify permissions on shared folders
+* Log off and log back in if it is a user policy
+
+---
+
+# Conclusion
+
+These 5 basic GPO labs help students learn how to:
+
+* Manage passwords
+* Control login security
+* Standardize desktops
+* Restrict user actions
+* Map shared resources
+
+They also introduce students to the difference between:
+
+* **User Configuration**
+* **Computer Configuration**
+* **Policies**
+* **Preferences**
+
+---
